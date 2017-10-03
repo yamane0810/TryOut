@@ -19,6 +19,8 @@ namespace Nagoshi
         GameObject InstanceObj;
         [SerializeField]
         GameObject InstancePos;
+        [SerializeField]
+        int rate;
 
         public Nagoshi.PlayerStatus.EventStatus GetStatus()
         {
@@ -33,6 +35,16 @@ namespace Nagoshi
                     Instantiate(InstanceObj, InstancePos.transform.position, Quaternion.identity);
                     break;
             }
+        }
+
+        public int GetRate()
+        {
+            return rate;
+        }
+
+        public void SetRate()
+        {
+
         }
     }
 }
