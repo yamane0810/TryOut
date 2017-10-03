@@ -26,7 +26,6 @@ namespace Yamaji
         public Image corsol;        //進行度カーソル
         public Text moneyText;      //所持金
         public Scrollbar stepBar;   //進行度バー
-        public GameObject moneyIcon;
         public UIManager uiManagerScript;
 
         void Start()
@@ -80,11 +79,6 @@ namespace Yamaji
         public void SetMoneyText(int setValue)
         {
             moneyText.text = setValue.ToString();
-        }
-
-        public GameObject GetObject()
-        {
-            return moneyIcon;
         }
     }
 }

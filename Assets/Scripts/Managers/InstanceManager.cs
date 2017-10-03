@@ -14,11 +14,12 @@ namespace Nagoshi
     {
 
         [SerializeField]
-        GameObject[] InstanceObj;
+        public GameObject[] InstanceObj;
 
-        public void InstanceObjects(int number, Vector3 pos)
+        public GameObject InstanceObjects(int number, Vector3 pos)
         {
-            Instantiate(InstanceObj[number], pos, Quaternion.identity);
+            GameObject obj = Instantiate(InstanceObj[number], pos, Quaternion.identity);
+            return obj;
         }
     }
 }

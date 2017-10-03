@@ -12,15 +12,19 @@ public class CollisionManager : MonoBehaviour {
 
     [SerializeField]
     UIManager UIScript;
+    [SerializeField]
+    Nagoshi.InstanceManager InstanceScript;
     /// <summary>
     /// プレイやーがほかのオブジェクト衝突した時の処理
     /// </summary>
     public void HitPlayer(GameObject playerobj,GameObject hitobj)
     {
         //イベントのオブジェクトに衝突した時
-        if(hitobj.tag == "Event")
+        if (hitobj.tag == "Event")
         {
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetEventObj(hitobj);
+            GameObject obj = InstanceScript.InstanceObjects(0, hitobj.transform.position + Vector3.up * 2);
+            Destroy(obj, 3.0f);
         }
         //ゴールオブジェクトに衝突した時
         else if (hitobj.tag == "Goal")
