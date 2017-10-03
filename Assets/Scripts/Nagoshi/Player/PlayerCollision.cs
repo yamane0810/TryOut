@@ -14,10 +14,17 @@ namespace Nagoshi
     {
         [SerializeField]
         CollisionManager collisionManagerScript;
+        [SerializeField]
+        Nagoshi.PlayerStatus playerStatusScript;
 
         void OnTriggerEnter(Collider col)
         {
             collisionManagerScript.HitPlayer(gameObject, col.gameObject);
+        }
+
+        void OnTriggerExit(Collider col)
+        {
+            playerStatusScript.SetEventObj(null);
         }
     }
 }

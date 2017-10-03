@@ -27,6 +27,7 @@ namespace Nagoshi
             none,
             brige
         }
+        [SerializeField]
         EventStatus eventStatus = EventStatus.none;
 
         public int GetHp()
@@ -82,6 +83,11 @@ namespace Nagoshi
         public void SetEventObj(GameObject set)
         {
             attachEventObj = set;
+            if (set != null)
+            {
+                EventStatus value = set.GetComponent<Nagoshi.EventStatus>().GetStatus();
+                SetEventStatus(value);
+            }
         }
 
         public GameObject GetEventObj()
