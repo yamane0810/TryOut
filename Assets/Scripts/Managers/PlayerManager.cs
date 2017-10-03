@@ -16,5 +16,15 @@ namespace Nagoshi
         Nagoshi.GameMaster gameMaster;
         [SerializeField]
         Nagoshi.PlayerStatus playerStatusScript;
+
+        public int GetMoney()
+        {
+            return playerStatusScript.GetMoney();
+        }
+
+        public int GetHp()
+        {
+            return playerStatusScript.GetHp();
+        }
     }
 }
