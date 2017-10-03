@@ -50,7 +50,25 @@ public class CollisionManager : MonoBehaviour {
             hp -= 20;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
             UI.HpGauge(hp);
-            Debug.Log("Damage");
+        }
+
+        else if(hitobj.tag == "Gondola")
+        {
+            playerobj.transform.parent = hitobj.transform;
+        }
+
+        else if(hitobj.tag == "Ground")
+        {
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsJump(true);
         }
     }
+
+    public void ExitPlayer(GameObject playerobj,GameObject exitobj)
+    {
+        if(exitobj.tag == "Event")
+        {
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetEventObj(null);
+        }
+    }
+
 }

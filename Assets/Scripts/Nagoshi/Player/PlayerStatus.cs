@@ -21,7 +21,9 @@ namespace Nagoshi
         [SerializeField]
         int money;
         GameObject attachEventObj;
+        [SerializeField]
         bool isJump = true;
+        [SerializeField]
         float jumpForce;
         public enum EventStatus
         {
