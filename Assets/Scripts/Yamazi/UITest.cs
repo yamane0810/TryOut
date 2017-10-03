@@ -26,7 +26,6 @@ namespace Yamaji
         public Image corsol;        //進行度カーソル
         public Text moneyText;      //所持金
         public Scrollbar stepBar;   //進行度バー
-
         void Start()
         {
             hp = maxHp;
@@ -59,7 +58,7 @@ namespace Yamaji
         void Money()
         {
             //書式設定
-            moneyText.text = string.Format("{0:00000} / {1:00000}", money, maxMoney);
+            //moneyText.text = string.Format("{0:00000} / {1:00000}", money, maxMoney);
             money += 1;
             //所持金値制限
             money = (int)Mathf.Clamp(money, 0, maxMoney);
