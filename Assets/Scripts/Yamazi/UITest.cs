@@ -17,8 +17,8 @@ namespace Yamaji
         int hp;                     //現在体力
         int maxHp = 100;            //最大体力
         int displayHp;              //比較用体力
-        int money = 0;              //現在所持金
-        int maxMoney = 10000;       //最大所持金
+        int money = 3000;           //現在所持金
+        int maxMoney = 9999;        //最大所持金
         float step = 0.0f;          //進行度
         float maxStep = 1.0f;       //最終地点
         bool isUpDown = false;      //移動フラグ
@@ -26,18 +26,22 @@ namespace Yamaji
         public Image corsol;        //進行度カーソル
         public Text moneyText;      //所持金
         public Scrollbar stepBar;   //進行度バー
+        public GameObject moneyIcon;
+        public UIManager uiManagerScript;
+
         void Start()
         {
+            uiManagerScript.SetMoneyValue(money);
+            money = uiManagerScript.GetMoneyValue();
             hp = maxHp;
             displayHp = hp;
+            Money();
         }
 
         void Update()
         {
             HpGauge();
-            Money();
             Step();
-            if (Input.anyKeyDown) hp -= 10;
         }
 
         //HPゲージ管理
@@ -58,8 +62,7 @@ namespace Yamaji
         void Money()
         {
             //書式設定
-            //moneyText.text = string.Format("{0:00000} / {1:00000}", money, maxMoney);
-            money += 1;
+            moneyText.text = string.Format("{0:0000}", money);
             //所持金値制限
             money = (int)Mathf.Clamp(money, 0, maxMoney);
         }
@@ -72,6 +75,16 @@ namespace Yamaji
             step += (float)0.1 * Time.deltaTime;
             //進行度カーソル回転
             corsol.transform.Rotate(5.0f, 0.0f, 0.0f);
+        }
+
+        public void SetMoneyText(int setValue)
+        {
+            moneyText.text = setValue.ToString();
+        }
+
+        public GameObject GetObject()
+        {
+            return moneyIcon;
         }
     }
 }
