@@ -15,6 +15,15 @@ public class CollisionManager : MonoBehaviour {
     /// </summary>
     public void HitPlayer(GameObject playerobj,GameObject hitobj)
     {
-
+        //イベントのオブジェクトに衝突した時
+        if(hitobj.tag == "Event")
+        {
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetEventObj(hitobj);
+        }
+        //ゴールオブジェクトに衝突した時
+        else if (hitobj.tag == "Goal")
+        {
+            Debug.Log("ゴール！");
+        }
     }
 }
