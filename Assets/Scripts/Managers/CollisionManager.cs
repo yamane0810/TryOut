@@ -9,12 +9,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CollisionManager : MonoBehaviour {
-
     /// <summary>
     /// プレイやーがほかのオブジェクト衝突した時の処理
     /// </summary>
     public void HitPlayer(GameObject playerobj,GameObject hitobj)
     {
-
+        //宝箱(coin)がプレイヤーに当たった時を宝箱を消す
+        if (hitobj.gameObject.tag == "coin")
+        {   
+            Destroy(hitobj);
+        }
     }
 }
