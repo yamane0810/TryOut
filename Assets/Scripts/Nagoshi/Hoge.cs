@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AAA : MonoBehaviour {
+public class Hoge : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
