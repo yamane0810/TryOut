@@ -16,7 +16,7 @@ namespace Nagoshi
         [SerializeField]
         Nagoshi.PlayerStatus.EventStatus eventstats;
         [SerializeField]
-        GameObject InstanceObj;
+        GameObject EventObj;
         [SerializeField]
         GameObject InstancePos;
         [SerializeField]
@@ -32,7 +32,13 @@ namespace Nagoshi
             switch (eventstats)
             {
                 case Nagoshi.PlayerStatus.EventStatus.brige:
-                    Instantiate(InstanceObj, InstancePos.transform.position, Quaternion.identity);
+                    Instantiate(EventObj, InstancePos.transform.position, Quaternion.identity);
+                    break;
+                case Nagoshi.PlayerStatus.EventStatus.gondola:
+                    EventObj.GetComponent<Fook>().InstanceGondola();
+                    break;
+                case Nagoshi.PlayerStatus.EventStatus.scafolld:
+                    EventObj.SetActive(true);
                     break;
             }
         }
