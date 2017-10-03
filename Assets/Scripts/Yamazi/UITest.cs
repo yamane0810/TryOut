@@ -21,8 +21,7 @@ namespace Yamaji
         int maxMoney = 10000;       //最大所持金
         float step = 0.0f;          //進行度
         float maxStep = 1.0f;       //最終地点
-        float maxCorsol = 35.0f;     //カーソル上昇限界
-        bool isChange = false;       //上昇下降切替
+        bool isUpDown = false;      //移動フラグ
         public Image hpImage;       //HPゲージ
         public Image corsol;        //進行度カーソル
         public Text moneyText;      //所持金
@@ -69,22 +68,11 @@ namespace Yamaji
         //進行度管理
         void Step()
         {
+            //進行度上昇
             stepBar.value = step;
-            Vector3 pos = corsol.transform.position;
-            pos.y += 1.0f;
             step += (float)0.1 * Time.deltaTime;
-            if (pos.y < maxCorsol && isChange == false)
-            {
-                isChange = true;
-            }
-            else if (pos.y >= maxCorsol && isChange == true)
-            {
-                pos.y -= 1.0f;
-            }
-            else
-            {
-                isChange = false;
-            }
+            //進行度カーソル回転
+            corsol.transform.Rotate(10.0f, 0.0f, 0.0f);
         }
     }
 }
