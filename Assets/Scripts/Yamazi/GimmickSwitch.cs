@@ -13,24 +13,20 @@ namespace Yamaji
 {
     public class GimmickSwitch : MonoBehaviour
     {
-        int cnt = 0;                      //カウント変数
         public GameObject gimmickSwitch;  //スイッチオブジェクト
-
         void Start()
         {
-            //表示を切っておく
-            gimmickSwitch.SetActive(false);
+            
         }
 
         void Update()
         {
-            cnt += 1;
+           
         }
 
-        //スイッチ出現処理
         void Appear()
         {
-            if (cnt > 60) gimmickSwitch.SetActive(true);
+            
         }
     }
 }
