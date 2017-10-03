@@ -17,7 +17,7 @@ namespace Yamaji
         int hp;                     //現在体力
         int maxHp = 100;            //最大体力
         int displayHp;              //比較用体力
-        int money = 3000;           //現在所持金
+        int money;                  //現在所持金
         int maxMoney = 9999;        //最大所持金
         float step = 0.0f;          //進行度
         float maxStep = 1.0f;       //最終地点
@@ -32,20 +32,22 @@ namespace Yamaji
         {
             uiManagerScript.SetMoneyValue(money);
             money = uiManagerScript.GetMoneyValue();
-            hp = maxHp;
+            hp = uiManagerScript.GetHpValue();
             displayHp = hp;
             Money();
+            HpGauge(displayHp);
         }
 
         void Update()
         {
-            HpGauge();
             Step();
+            
         }
 
         //HPゲージ管理
-        void HpGauge()
+        public void HpGauge(int hp)
         {
+            Debug.Log(hp);
             //現在体力と比較用体力を比べて、異なっていれば徐々に減算
             if (displayHp != hp) displayHp = (int)Mathf.Lerp(displayHp, hp, 0.1f);
             //現在体力の割合により文字色変化
