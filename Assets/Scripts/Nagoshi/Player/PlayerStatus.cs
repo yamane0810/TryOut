@@ -20,6 +20,14 @@ namespace Nagoshi
         bool isTest = false;
         [SerializeField]
         int money;
+        GameObject attachEventObj;
+
+        public enum EventStatus
+        {
+            none,
+            brige
+        }
+        EventStatus eventStatus = EventStatus.none;
 
         public int GetHp()
         {
@@ -59,6 +67,31 @@ namespace Nagoshi
         public void SetMoney(int set)
         {
             money = set;
+        }
+
+        public void SetEventStatus(EventStatus set)
+        {
+            eventStatus = set;
+        }
+
+        public EventStatus GetEventStatus()
+        {
+            return eventStatus;
+        }
+
+        public void SetEventObj(GameObject set)
+        {
+            attachEventObj = set;
+        }
+
+        public GameObject GetEventObj()
+        {
+            return attachEventObj;
+        }
+
+        public void SetHp(int set)
+        {
+            hp = set;
         }
     }
 }
