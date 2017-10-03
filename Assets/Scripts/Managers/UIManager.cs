@@ -18,4 +18,9 @@ public class UIManager : MonoBehaviour
     {
         return playerScript.GetMoney();
     }
+
+    public int GetHpValue()
+    {
+        return playerScript.GetHp();
+    }
 }

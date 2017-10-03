@@ -14,6 +14,8 @@ public class CollisionManager : MonoBehaviour {
     UIManager UIScript;
     [SerializeField]
     Nagoshi.InstanceManager InstanceScript;
+    [SerializeField]
+    Yamaji.UITest UI;
     /// <summary>
     /// プレイやーがほかのオブジェクト衝突した時の処理
     /// </summary>
@@ -45,8 +47,9 @@ public class CollisionManager : MonoBehaviour {
         else if (hitobj.tag == "Gimmick")
         {
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
-            hp -= 10;
+            hp -= 20;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
+            UI.HpGauge(hp);
             Debug.Log("Damage");
         }
     }
