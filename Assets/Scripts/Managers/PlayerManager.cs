@@ -26,5 +26,15 @@ namespace Nagoshi
         {
             return playerStatusScript.GetHp();
         }
+
+        public void SetMoney(int set)
+        {
+            playerStatusScript.SetMoney(set);
+        }
+
+        public void SetHp(int set)
+        {
+            playerStatusScript.SetHp(set);
+        }
     }
 }
