@@ -17,6 +17,9 @@ namespace Nagoshi
         [SerializeField]
         int speed;
         bool isWalk = false;
+        bool isTest = false;
+        [SerializeField]
+        int money;
 
         public int GetHp()
         {
@@ -38,5 +41,24 @@ namespace Nagoshi
             return isWalk;
         }
 
+        public bool GetIsTest()
+        {
+            return isTest;
+        }
+
+        public void SetIsTest(bool set)
+        {
+            isTest = set;
+        }
+
+        public int GetMoney()
+        {
+            return money;
+        }
+
+        public void SetMoney(int set)
+        {
+            money = set;
+        }
     }
 }
