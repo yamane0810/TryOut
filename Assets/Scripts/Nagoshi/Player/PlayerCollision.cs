@@ -15,7 +15,7 @@ namespace Nagoshi
         [SerializeField]
         CollisionManager collisionManagerScript;
 
-        void OnTrigerEnter(Collision col)
+        void OnTriggerEnter(Collider col)
         {
             collisionManagerScript.HitPlayer(gameObject, col.gameObject);
         }
