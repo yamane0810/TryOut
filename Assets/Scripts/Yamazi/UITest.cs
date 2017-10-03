@@ -72,7 +72,7 @@ namespace Yamaji
             stepBar.value = step;
             step += (float)0.1 * Time.deltaTime;
             //進行度カーソル回転
-            corsol.transform.Rotate(10.0f, 0.0f, 0.0f);
+            corsol.transform.Rotate(5.0f, 0.0f, 0.0f);
         }
     }
 }
