@@ -28,29 +28,34 @@ namespace Nagoshi
         {
             if (Input.GetKeyDown(KeyCode.D))
             {
-                Walk(true,1);
+                Walk(true, 1);
             }
 
-            else if(Input.GetKeyUp(KeyCode.D))
+            else if (Input.GetKeyUp(KeyCode.D))
             {
-                Walk(false,0);
+                Walk(false, 0);
             }
 
             if (Input.GetKeyDown(KeyCode.A))
             {
-                Walk(true,-1);
+                Walk(true, -1);
             }
 
             else if (Input.GetKeyUp(KeyCode.A))
             {
-                Walk(false,0);
+                Walk(false, 0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Event();
             }
         }
 
         /// <summary>
         /// 移動キーを押された時の処理
         /// </summary>
-        void Walk(bool set,int value)
+        void Walk(bool set, int value)
         {
             //アニメーションの処理開始
             playerStatusScript.SetIsWalk(set);
@@ -67,10 +72,25 @@ namespace Nagoshi
 
         void Move()
         {
-            if(moveValue != 0)
+            if (moveValue != 0)
             {
                 float speed = playerStatusScript.GetSpeed() * Time.deltaTime * moveValue;
                 transform.Translate(speed, 0.0f, 0.0f, Space.World);
+            }
+        }
+
+        void Event()
+        {
+            Nagoshi.PlayerStatus.EventStatus result = playerStatusScript.GetEventStatus();
+            if (result != PlayerStatus.EventStatus.none)
+            {
+                switch (result)
+                {
+                    case PlayerStatus.EventStatus.brige:
+                        GameObject eventobj = playerStatusScript.GetEventObj();
+                        eventobj.GetComponent<Nagoshi.EventStatus>().Action();
+                        break;
+                }
             }
         }
     }

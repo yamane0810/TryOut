@@ -17,6 +17,18 @@ namespace Nagoshi
         [SerializeField]
         int speed;
         bool isWalk = false;
+        bool isTest = false;
+        [SerializeField]
+        int money;
+        GameObject attachEventObj;
+
+        public enum EventStatus
+        {
+            none,
+            brige
+        }
+        [SerializeField]
+        EventStatus eventStatus = EventStatus.none;
 
         public int GetHp()
         {
@@ -38,5 +50,54 @@ namespace Nagoshi
             return isWalk;
         }
 
+        public bool GetIsTest()
+        {
+            return isTest;
+        }
+
+        public void SetIsTest(bool set)
+        {
+            isTest = set;
+        }
+
+        public int GetMoney()
+        {
+            return money;
+        }
+
+        public void SetMoney(int set)
+        {
+            money = set;
+        }
+
+        public void SetEventStatus(EventStatus set)
+        {
+            eventStatus = set;
+        }
+
+        public EventStatus GetEventStatus()
+        {
+            return eventStatus;
+        }
+
+        public void SetEventObj(GameObject set)
+        {
+            attachEventObj = set;
+            if (set != null)
+            {
+                EventStatus value = set.GetComponent<Nagoshi.EventStatus>().GetStatus();
+                SetEventStatus(value);
+            }
+        }
+
+        public GameObject GetEventObj()
+        {
+            return attachEventObj;
+        }
+
+        public void SetHp(int set)
+        {
+            hp = set;
+        }
     }
 }
