@@ -15,7 +15,7 @@ public class CollisionManager : MonoBehaviour {
     [SerializeField]
     Nagoshi.InstanceManager InstanceScript;
     [SerializeField]
-    Yamaji.UITest UI;
+    Yamaji.UI UI;
     /// <summary>
     /// プレイやーがほかのオブジェクト衝突した時の処理
     /// </summary>
@@ -51,6 +51,15 @@ public class CollisionManager : MonoBehaviour {
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
             UI.HpGauge(hp);
             Debug.Log("Damage");
+        }
+        //敵と衝突した時
+        else if (hitobj.tag == "Enemy")
+        {
+            int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
+            hp -= 30;
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
+            UI.HpGauge(hp);
+            Destroy(hitobj);
         }
     }
 }
