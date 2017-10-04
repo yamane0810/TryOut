@@ -21,16 +21,11 @@ namespace Nagoshi
         [SerializeField]
         int money;
         GameObject attachEventObj;
-        [SerializeField]
-        bool isJump = true;
-        [SerializeField]
-        float jumpForce;
+
         public enum EventStatus
         {
             none,
-            brige,
-            gondola,
-            scafolld
+            brige
         }
         [SerializeField]
         EventStatus eventStatus = EventStatus.none;
@@ -103,21 +98,6 @@ namespace Nagoshi
         public void SetHp(int set)
         {
             hp = set;
-        }
-
-        public void SetIsJump(bool set)
-        {
-            isJump = set;
-        }
-
-        public bool GetIsJump()
-        {
-            return isJump;
-        }
-
-        public float GetJumpForce()
-        {
-            return jumpForce;
         }
     }
 }

@@ -50,11 +50,6 @@ namespace Nagoshi
             {
                 Event();
             }
-
-            if(Input.GetKeyDown(KeyCode.Q))
-            {
-                Jump();
-            }
         }
 
         /// <summary>
@@ -96,16 +91,6 @@ namespace Nagoshi
                         eventobj.GetComponent<Nagoshi.EventStatus>().Action();
                         break;
                 }
-            }
-        }
-
-        void Jump()
-        {
-            if(playerStatusScript.GetIsJump())
-            {
-                float force = playerStatusScript.GetJumpForce();
-                GetComponent<Rigidbody>().AddForce(Vector3.up * force );
-                playerStatusScript.SetIsJump(false);
             }
         }
     }
