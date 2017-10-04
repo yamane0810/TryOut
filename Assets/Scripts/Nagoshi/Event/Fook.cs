@@ -43,13 +43,12 @@ namespace Nagoshi
             if(directionTime < 0)
             {
                 directionValue = -directionValue;
-                directionTime = -copytime;
+                directionTime = copytime;
             }
         }
 
         public void SetDirection()
         {
-            directionValue = -directionValue;
         }
 
         public void InstanceGondola()
