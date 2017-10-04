@@ -12,10 +12,13 @@ namespace Nagoshi
 {
     public class Gondola : MonoBehaviour
     {
-
+        [SerializeField]
+        Nagoshi.Fook fookObj;
 
         public void SetDirection()
         {
+            fookObj.SetDirection();
         }
+
     }
 }

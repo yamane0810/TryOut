@@ -29,10 +29,12 @@ namespace Nagoshi
 
         void OnCollisionEnter(Collision col)
         {
-            if(col.gameObject.tag == "Ground")
-            {
-                playerStatusScript.SetIsJump(true);
-            }
+            collisionManagerScript.HitCollision(gameObject,col.gameObject);
+        }
+
+        void OnCollisionExit(Collision col)
+        {
+            collisionManagerScript.HitCollision(gameObject, col.gameObject);
         }
     }
 }

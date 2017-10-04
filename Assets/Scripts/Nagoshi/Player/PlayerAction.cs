@@ -30,7 +30,6 @@ namespace Nagoshi
 
         void Key()
         {
-            Debug.Log("値は"+ Input.GetAxis("Horizontal"));
             if (Input.GetKeyDown(KeyCode.D) || Input.GetAxis("Horizontal") < leftValue)
             {
                 Walk(true, -1);

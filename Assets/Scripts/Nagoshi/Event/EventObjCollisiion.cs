@@ -12,7 +12,6 @@ namespace Nagoshi
 {
     public class EventObjCollisiion : MonoBehaviour
     {
-
         [SerializeField]
         CollisionManager collisonManagerScript;
 
@@ -23,6 +22,5 @@ namespace Nagoshi
                 GetComponent<Nagoshi.Fook>().SetDirection();
             }
         }
-
     }
 }

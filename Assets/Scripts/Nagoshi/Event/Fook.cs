@@ -17,16 +17,34 @@ namespace Nagoshi
         int directionValue = 1;
         [SerializeField]
         GameObject gondolaObj;
+        [SerializeField]
+        float directionTime;
+        float copytime;
+        void Start()
+        {
+            copytime = directionTime;
+        }
 
         void Update()
         {
             Move();
+            Count();
         }
 
         void Move()
         {
             float sum = speed * Time.deltaTime * directionValue;
             transform.Translate(sum, 0, 0);
+        }
+
+        void Count()
+        {
+            directionTime = directionTime - Time.deltaTime;
+            if(directionTime < 0)
+            {
+                directionValue = -directionValue;
+                directionTime = -copytime;
+            }
         }
 
         public void SetDirection()
@@ -37,7 +55,7 @@ namespace Nagoshi
         public void InstanceGondola()
         {
             gondolaObj.SetActive(true);
-            GetComponent<BoxCollider>().size = gondolaObj.transform.localScale;
+            GetComponent<BoxCollider>().enabled = false;
         }
     }
 }

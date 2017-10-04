@@ -71,13 +71,33 @@ public class CollisionManager : MonoBehaviour {
         //ゴンドラと接した時
         else if (hitobj.tag == "Gondola")
         {
-            playerobj.transform.parent = hitobj.transform;
+           Vector3 copyscale = playerobj.transform.localScale;
+           playerobj.transform.parent = hitobj.transform;
+            playerobj.transform.localScale = copyscale;
         }
     }
 
     public void ExitPlayer(GameObject playerobj,GameObject exitobj)
     {
-        if(exitobj.tag == "Gondola")
+
+    }
+
+    public void HitCollision(GameObject playerobj,GameObject hitobj)
+    {
+        if (hitobj.gameObject.tag == "Ground")
+        {
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsJump(true);
+        }
+
+        else if (hitobj.gameObject.tag == "Fook")
+        {
+            playerobj.transform.parent = hitobj.transform;
+        }
+    }
+
+    public void ExitCollsion(GameObject playerobj, GameObject exitobj)
+    {
+        if (exitobj.tag == "Gondola")
         {
             playerobj.transform.parent = null;
         }
