@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     public void SetMoneyValue(int set)
     {
         UITestScript.SetMoneyText(set);
-    } 
+    }
 
     //所持金取得
     public int GetMoneyValue()
