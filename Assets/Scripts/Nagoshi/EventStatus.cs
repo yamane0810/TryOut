@@ -12,7 +12,6 @@ namespace Nagoshi
 {
     public class EventStatus : MonoBehaviour
     {
-
         [SerializeField]
         Nagoshi.PlayerStatus.EventStatus eventstats;
         [SerializeField]
@@ -21,6 +20,7 @@ namespace Nagoshi
         GameObject InstancePos;
         [SerializeField]
         int rate;
+        bool isAction = true;
         public Nagoshi.PlayerStatus.EventStatus GetStatus()
         {
             return eventstats;
@@ -28,15 +28,19 @@ namespace Nagoshi
 
         public void Action()
         {
-            switch (eventstats)
+            if (isAction)
             {
-                case Nagoshi.PlayerStatus.EventStatus.brige:
-                case Nagoshi.PlayerStatus.EventStatus.scaffold:
-                    Instantiate(EventObj, InstancePos.transform.position, Quaternion.identity);
-                    break;
-                case Nagoshi.PlayerStatus.EventStatus.gondola:
-                    EventObj.GetComponent<Fook>().InstanceGondola();
-                    break;
+                switch (eventstats)
+                {
+                    case Nagoshi.PlayerStatus.EventStatus.brige:
+                    case Nagoshi.PlayerStatus.EventStatus.scaffold:
+                        Instantiate(EventObj, InstancePos.transform.position, Quaternion.identity);
+                        break;
+                    case Nagoshi.PlayerStatus.EventStatus.gondola:
+                        EventObj.GetComponent<Fook>().InstanceGondola();
+                        break;
+                }
+                isAction = false;
             }
         }
 
