@@ -41,5 +41,10 @@ namespace Nagoshi
                 transform.parent = null;
             }
         }
+
+        void OnTriggerStay(Collider col)
+        {
+            collisionManagerScript.StayCollision(gameObject,col.gameObject);
+        }
     }
 }
