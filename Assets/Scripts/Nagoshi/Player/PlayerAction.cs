@@ -93,12 +93,22 @@ namespace Nagoshi
             Nagoshi.PlayerStatus.EventStatus result = playerStatusScript.GetEventStatus();
             if (result != PlayerStatus.EventStatus.none)
             {
+                GameObject eventobj = playerStatusScript.GetEventObj();
+                int money = playerStatusScript.GetMoney();
+                int rate = eventobj.GetComponent<Nagoshi.EventStatus>().GetRate();
+                int sum = money - rate;
+                Debug.Log("現在のお金"+sum);
+                if(sum < 0)
+                {
+                    return;
+                }
                 switch (result)
                 {
                     case PlayerStatus.EventStatus.brige:
                     case PlayerStatus.EventStatus.gondola:
                     case PlayerStatus.EventStatus.scaffold:
-                        GameObject eventobj = playerStatusScript.GetEventObj();
+                        playerStatusScript.SetMoney(sum);
+                        Debug.Log("アクション");
                         eventobj.GetComponent<Nagoshi.EventStatus>().Action();
                         break;
                 }
