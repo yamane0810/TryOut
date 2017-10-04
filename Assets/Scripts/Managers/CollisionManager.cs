@@ -8,7 +8,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollisionManager : MonoBehaviour {
+public class CollisionManager : MonoBehaviour
+{
 
     [SerializeField]
     UIManager UIScript;
@@ -16,6 +17,7 @@ public class CollisionManager : MonoBehaviour {
     Nagoshi.InstanceManager InstanceScript;
     [SerializeField]
     Yamaji.UI UI;
+    float cnt = 0.0f;
     /// <summary>
     /// プレイやーがほかのオブジェクト衝突した時の処理
     /// </summary>
@@ -61,6 +63,7 @@ public class CollisionManager : MonoBehaviour {
             UI.HpGauge(hp);
             Destroy(hitobj);
         }
+        
 
         //地面と接した時
         else if(hitobj.tag == "Ground")
@@ -100,6 +103,23 @@ public class CollisionManager : MonoBehaviour {
         if (exitobj.tag == "Gondola")
         {
             playerobj.transform.parent = null;
+        }
+    }
+    public void StayCollision(GameObject playerobj, GameObject stayObj)
+    {
+        //毒エリアに衝突した時
+        if (stayObj.tag == "Smog")
+        {
+            cnt += Time.deltaTime;
+            Debug.Log(cnt);
+            int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
+            if (cnt > 1.0f)
+            {
+                hp -= 5;
+                cnt = 0.0f;
+            }
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
+            UI.HpGauge(hp);
         }
     }
 }
