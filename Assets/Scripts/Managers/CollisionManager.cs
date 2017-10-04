@@ -43,7 +43,6 @@ public class CollisionManager : MonoBehaviour
             int money = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetMoney();
             money += 500;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetMoney(money);
-            UIScript.SetMoneyValue(money);
             Debug.Log(money);
             Destroy(hitobj);
             GetComponent<SEManager>().PlaySe(3);
@@ -55,7 +54,6 @@ public class CollisionManager : MonoBehaviour
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             hp -= 20;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
-            UI.HpGauge(hp);
             Debug.Log("Damage");
         }
         //敵と衝突した時
@@ -64,7 +62,6 @@ public class CollisionManager : MonoBehaviour
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             hp -= 30;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
-            UI.HpGauge(hp);
             Destroy(hitobj);
         }
         
@@ -119,7 +116,6 @@ public class CollisionManager : MonoBehaviour
                 cnt = 0.0f;
             }
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
-            UI.HpGauge(hp);
         }
     }
 }

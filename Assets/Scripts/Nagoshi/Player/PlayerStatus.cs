@@ -29,6 +29,10 @@ namespace Nagoshi
         int maxHp;
         [SerializeField]
         int maxMoney;
+        [SerializeField]
+        UIManager UIManager;
+        [SerializeField]
+        Yamaji.UI UIScript;
 
         public enum EventStatus
         {
@@ -79,6 +83,7 @@ namespace Nagoshi
         public void SetMoney(int set)
         {
             money = set;
+            UIManager.SetMoneyValue(set);
         }
 
         public void SetEventStatus(EventStatus set)
@@ -109,6 +114,7 @@ namespace Nagoshi
         public void SetHp(int set)
         {
             hp = set;
+            UIScript.HpGauge(hp);
         }
 
         public void SetIsJump(bool set)

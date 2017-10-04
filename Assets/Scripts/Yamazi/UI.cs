@@ -29,7 +29,7 @@ namespace Yamaji
         {
             uiManagerScript.SetMoneyValue(playerMoney);
             playerMaxHp = playerStatus.GetMaxHp();
-            playerHp = playerMaxHp;
+            playerHp = playerStatus.GetHp();
             playerMaxMoney = playerStatus.GetMaxMoney();
             playerMoney = playerStatus.GetMoney();
             damage = playerMaxHp - playerHp;
