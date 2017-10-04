@@ -45,7 +45,7 @@ public class CollisionManager : MonoBehaviour
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetMoney(money);
             Debug.Log(money);
             Destroy(hitobj);
-            GetComponent<SEManager>().PlaySe(3);
+            //GetComponent<SEManager>().PlaySe(3);
 
         }
         //ギミックに衝突した時
@@ -108,7 +108,6 @@ public class CollisionManager : MonoBehaviour
         if (stayObj.tag == "Smog")
         {
             cnt += Time.deltaTime;
-            Debug.Log(cnt);
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             if (cnt > 1.0f)
             {
