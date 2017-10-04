@@ -46,6 +46,8 @@ public class CollisionManager : MonoBehaviour
             UIScript.SetMoneyValue(money);
             Debug.Log(money);
             Destroy(hitobj);
+            GetComponent<SEManager>().PlaySe(3);
+
         }
         //ギミックに衝突した時
         else if (hitobj.tag == "Gimmick")
@@ -79,6 +81,7 @@ public class CollisionManager : MonoBehaviour
            Vector3 copyscale = playerobj.transform.localScale;
            playerobj.transform.parent = hitobj.transform;
             playerobj.transform.localScale = copyscale;
+            GetComponent<SEManager>().PlaySe(2);
         }
     }
 
