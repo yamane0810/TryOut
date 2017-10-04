@@ -17,6 +17,10 @@ namespace Nagoshi
         [SerializeField]
         PlayerStatus playerStatusScript;
         int moveValue = 0;
+        [SerializeField]
+        float leftValue;
+        [SerializeField]
+        float rightValue;
 
         void Update()
         {
@@ -26,22 +30,22 @@ namespace Nagoshi
 
         void Key()
         {
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                Walk(true, 1);
-            }
-
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
-                Walk(false, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetAxis("Horizontal") < leftValue)
             {
                 Walk(true, -1);
             }
 
-            else if (Input.GetKeyUp(KeyCode.A))
+            else if (Input.GetKeyUp(KeyCode.D) || Input.GetAxis("Horizontal") > leftValue  && Input.GetAxis("Horizontal") < 0)
+            {
+                Walk(false, 0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetAxis("Horizontal") > rightValue)
+            {
+                Walk(true, 1);
+            }
+
+            else if (Input.GetKeyUp(KeyCode.A) || Input.GetAxis("Horizontal") < rightValue && Input.GetAxis("Horizontal") > 0)
             {
                 Walk(false, 0);
             }
@@ -49,6 +53,11 @@ namespace Nagoshi
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Event();
+            }
+
+            if(Input.GetKeyDown(KeyCode.Joystick1Button1))
+            {
+                Jump();
             }
         }
 
@@ -91,6 +100,15 @@ namespace Nagoshi
                         eventobj.GetComponent<Nagoshi.EventStatus>().Action();
                         break;
                 }
+            }
+        }
+
+        void Jump()
+        {
+            if(playerStatusScript.GetIsJump())
+            {
+                playerStatusScript.SetIsJump(false);
+                GetComponent<Rigidbody>().AddForce(Vector3.up * playerStatusScript.GetJumpForce());
             }
         }
     }
