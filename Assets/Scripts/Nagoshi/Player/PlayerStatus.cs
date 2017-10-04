@@ -83,7 +83,8 @@ namespace Nagoshi
         public void SetMoney(int set)
         {
             money = set;
-            UIManager.SetMoneyValue(set);
+            UIManager.SetMoneyValue(money);
+            UIScript.SetMoneyText(money);
         }
 
         public void SetEventStatus(EventStatus set)

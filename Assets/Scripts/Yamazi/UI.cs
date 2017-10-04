@@ -40,12 +40,13 @@ namespace Yamaji
             //最大体力とダメージを比べて、異なっていれば徐々に減算
             float hpPercentage = (float)playerMaxHp / hp * 1.0f;
             //ゲージの長さを体力の割合により伸縮
-            imageDamage.rectTransform.localScale = new Vector3(6.0f, hpPercentage, 1.0f);
+            imageDamage.transform.localScale = new Vector3(6.0f, hpPercentage, 1.0f);
         }
 
         //表示所持金セット
         public void SetMoneyText(int setValue)
         {
+            Debug.Log(setValue);
             textMoney.text = setValue.ToString();
             textMoney.text = string.Format("{0:0,000}", setValue);
             //所持金値制限
