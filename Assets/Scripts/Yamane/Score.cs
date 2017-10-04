@@ -29,7 +29,6 @@ public class Score : MonoBehaviour
         //一行読み込み
         string TotalScore = sr.ReadToEnd();
         scoretxt.text = TotalScore;
-
     }
     void Update()
     {
