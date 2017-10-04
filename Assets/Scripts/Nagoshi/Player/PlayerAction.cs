@@ -96,6 +96,8 @@ namespace Nagoshi
                 switch (result)
                 {
                     case PlayerStatus.EventStatus.brige:
+                    case PlayerStatus.EventStatus.gondola:
+                    case PlayerStatus.EventStatus.scaffold:
                         GameObject eventobj = playerStatusScript.GetEventObj();
                         eventobj.GetComponent<Nagoshi.EventStatus>().Action();
                         break;

@@ -24,7 +24,15 @@ namespace Nagoshi
 
         void OnTriggerExit(Collider col)
         {
-            playerStatusScript.SetEventObj(null);
+            collisionManagerScript.ExitPlayer(gameObject,col.gameObject);
+        }
+
+        void OnCollisionEnter(Collision col)
+        {
+            if(col.gameObject.tag == "Ground")
+            {
+                playerStatusScript.SetIsJump(true);
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Nagoshi
         int speed;
         bool isWalk = false;
         bool isTest = false;
+        [SerializeField]
         bool isJump = true;
         [SerializeField]
         int money;
@@ -28,7 +29,9 @@ namespace Nagoshi
         public enum EventStatus
         {
             none,
-            brige
+            brige,
+            gondola,
+            scaffold
         }
         [SerializeField]
         EventStatus eventStatus = EventStatus.none;

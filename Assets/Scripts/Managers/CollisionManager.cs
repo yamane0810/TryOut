@@ -61,5 +61,25 @@ public class CollisionManager : MonoBehaviour {
             UI.HpGauge(hp);
             Destroy(hitobj);
         }
+
+        //地面と接した時
+        else if(hitobj.tag == "Ground")
+        {
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsJump(true);
+        }
+
+        //ゴンドラと接した時
+        else if (hitobj.tag == "Gondola")
+        {
+            playerobj.transform.parent = hitobj.transform;
+        }
+    }
+
+    public void ExitPlayer(GameObject playerobj,GameObject exitobj)
+    {
+        if(exitobj.tag == "Gondola")
+        {
+            playerobj.transform.parent = null;
+        }
     }
 }
