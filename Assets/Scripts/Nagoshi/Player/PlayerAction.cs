@@ -50,12 +50,12 @@ namespace Nagoshi
                 Walk(false, 0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
                 Event();
             }
 
-            if(Input.GetKeyDown(KeyCode.Joystick1Button1))
+            if(Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 Jump();
             }
