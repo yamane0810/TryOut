@@ -37,7 +37,6 @@ namespace Yamaji
         //HPゲージ管理
         public void HpGauge(int hp)
         {
-            Debug.Log(hp);
             //現在体力と比較用体力を比べて、異なっていれば徐々に減算
             if (displayHp != hp) displayHp = (int)Mathf.Lerp(displayHp, hp, 0.1f);
             //現在体力の割合により文字色変化
@@ -53,7 +52,7 @@ namespace Yamaji
         void Money()
         {
             //書式設定
-            moneyText.text = string.Format("{0:0000}", money);
+            moneyText.text = string.Format("{0:0,000}", money);
             //所持金値制限
             money = (int)Mathf.Clamp(money, 0, maxMoney);
         }
