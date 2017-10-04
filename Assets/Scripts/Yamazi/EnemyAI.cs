@@ -28,7 +28,6 @@ namespace Yamaji
         void Update()
         {
             cnt += 1.0f * Time.deltaTime;
-            Debug.Log(cnt);
             transform.position = pos;
 
             if (cnt < 10.0f)
