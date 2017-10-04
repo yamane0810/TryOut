@@ -11,8 +11,7 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-    [SerializeField]
-    ScoreWrite srScript;
+
     [SerializeField]
     UIManager UIScript;
     [SerializeField]
@@ -35,11 +34,6 @@ public class CollisionManager : MonoBehaviour
         //ゴールオブジェクトに衝突した時
         else if (hitobj.tag == "Goal")
         {
-            int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
-            int money = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetMoney();
-            int sum = hp + money;
-            string data = sum.ToString();
-            srScript.WirteScore(data);
             SceneManager.LoadScene("ResultScene");
             //Debug.Log("ゴール！");
         }
@@ -114,7 +108,6 @@ public class CollisionManager : MonoBehaviour
         if (stayObj.tag == "Smog")
         {
             cnt += Time.deltaTime;
-            Debug.Log(cnt);
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             if (cnt > 1.0f)
             {
