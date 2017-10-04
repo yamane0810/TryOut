@@ -97,8 +97,7 @@ namespace Nagoshi
                 int money = playerStatusScript.GetMoney();
                 int rate = eventobj.GetComponent<Nagoshi.EventStatus>().GetRate();
                 int sum = money - rate;
-                Debug.Log("現在のお金"+sum);
-                if(sum < 0)
+                if(sum <= 0)
                 {
                     return;
                 }

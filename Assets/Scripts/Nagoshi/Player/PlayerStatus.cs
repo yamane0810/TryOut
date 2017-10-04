@@ -35,7 +35,8 @@ namespace Nagoshi
             none,
             brige,
             gondola,
-            scaffold
+            scaffold,
+            movebox
         }
         [SerializeField]
         EventStatus eventStatus = EventStatus.none;
