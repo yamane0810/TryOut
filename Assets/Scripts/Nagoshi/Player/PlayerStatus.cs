@@ -25,6 +25,10 @@ namespace Nagoshi
         [SerializeField]
         float jumpForce;
         GameObject attachEventObj;
+        [SerializeField]
+        int maxHp;
+        [SerializeField]
+        int maxMoney;
 
         public enum EventStatus
         {
@@ -124,6 +128,26 @@ namespace Nagoshi
         public void SetJumpForce(float set)
         {
             jumpForce = set;
+        }
+
+        public void SetMaxMoney(int set)
+        {
+            maxMoney = set;
+        }
+
+        public int GetMaxMoney()
+        {
+            return maxMoney;
+        }
+
+        public int GetMaxHp()
+        {
+            return maxHp;
+        }
+
+        public void SetMaxHp(int set)
+        {
+            maxHp = set;
         }
     }
 }
