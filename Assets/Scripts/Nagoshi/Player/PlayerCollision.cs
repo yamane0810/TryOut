@@ -34,8 +34,6 @@ namespace Nagoshi
 
         void OnCollisionExit(Collision col)
         {
-            Debug.Log(col.gameObject);
-            //collisionManagerScript.HitCollision(gameObject, col.gameObject);
             if(col.gameObject.tag == "Fook")
             {
                 transform.parent = null;
