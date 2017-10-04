@@ -17,6 +17,10 @@ namespace Nagoshi
         [SerializeField]
         PlayerStatus playerStatusScript;
         int moveValue = 0;
+        [SerializeField]
+        float leftValue;
+        [SerializeField]
+        float rightValue;
 
         void Update()
         {
@@ -26,29 +30,34 @@ namespace Nagoshi
 
         void Key()
         {
-            if (Input.GetKeyDown(KeyCode.D))
-            {
-                Walk(true, 1);
-            }
-
-            else if (Input.GetKeyUp(KeyCode.D))
-            {
-                Walk(false, 0);
-            }
-
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetAxis("Horizontal") < leftValue)
             {
                 Walk(true, -1);
             }
 
-            else if (Input.GetKeyUp(KeyCode.A))
+            else if (Input.GetKeyUp(KeyCode.D) || Input.GetAxis("Horizontal") == 0)
             {
                 Walk(false, 0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.A) || Input.GetAxis("Horizontal") > rightValue)
+            {
+                Walk(true, 1);
+            }
+
+            else if (Input.GetKeyUp(KeyCode.A) || Input.GetAxis("Horizontal") == 0)
+            {
+                Walk(false, 0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
                 Event();
+            }
+
+            if(Input.GetKeyDown(KeyCode.Joystick1Button0))
+            {
+                Jump();
             }
         }
 
@@ -87,10 +96,21 @@ namespace Nagoshi
                 switch (result)
                 {
                     case PlayerStatus.EventStatus.brige:
+                    case PlayerStatus.EventStatus.gondola:
+                    case PlayerStatus.EventStatus.scaffold:
                         GameObject eventobj = playerStatusScript.GetEventObj();
                         eventobj.GetComponent<Nagoshi.EventStatus>().Action();
                         break;
                 }
+            }
+        }
+
+        void Jump()
+        {
+            if(playerStatusScript.GetIsJump())
+            {
+                playerStatusScript.SetIsJump(false);
+                GetComponent<Rigidbody>().AddForce(Vector3.up * playerStatusScript.GetJumpForce());
             }
         }
     }
