@@ -14,8 +14,6 @@ public class UIManager : MonoBehaviour
     Yamaji.UI UITestScript;
     [SerializeField]
     Nagoshi.PlayerManager playerScript;
-    [SerializeField]
-    Nagoshi.InstanceManager InstanceScript;
 
     //所持金設定
     public void SetMoneyValue(int set)
