@@ -106,8 +106,8 @@ namespace Nagoshi
                     case PlayerStatus.EventStatus.brige:
                     case PlayerStatus.EventStatus.gondola:
                     case PlayerStatus.EventStatus.scaffold:
+                    case PlayerStatus.EventStatus.movebox:
                         playerStatusScript.SetMoney(sum);
-                        Debug.Log("アクション");
                         eventobj.GetComponent<Nagoshi.EventStatus>().Action();
                         break;
                 }
