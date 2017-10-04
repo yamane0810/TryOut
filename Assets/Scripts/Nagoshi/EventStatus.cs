@@ -21,7 +21,6 @@ namespace Nagoshi
         GameObject InstancePos;
         [SerializeField]
         int rate;
-
         public Nagoshi.PlayerStatus.EventStatus GetStatus()
         {
             return eventstats;
@@ -38,7 +37,6 @@ namespace Nagoshi
                 case Nagoshi.PlayerStatus.EventStatus.gondola:
                     EventObj.GetComponent<Fook>().InstanceGondola();
                     break;
-                    
             }
         }
 
@@ -47,9 +45,9 @@ namespace Nagoshi
             return rate;
         }
 
-        public void SetRate()
+        public void SetRate(int set)
         {
-
+            rate = set;
         }
     }
 }
