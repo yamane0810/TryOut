@@ -10,19 +10,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 namespace Yamaji
 {
     public class UI : MonoBehaviour
     {
         int hp;                             //現在体力
         int maxHp = 100;                    //最大体力
-        int displayHp;                      //比較用体力
-        int damageHp;                       //比較用ダメージ
+        int damage;                         //ダメージ
         int money;                          //現在所持金
         int maxMoney = 9999;                //最大所持金
-        public Image imageHp;               //HP
-        public Image imageDamage;           //ダメージ
+        public Image imageDamage;           //ダメージ演出画像
+        public Text textMoney;              //所持金テキスト
+        //public Sprite sprite;             //分割前スプライト
+        //public Sprite[] SpriteArray;      //各スプライト格納配列
         public UIManager uiManagerScript;   //UIマネージャー取得
         
         //初期化処理
@@ -31,31 +31,24 @@ namespace Yamaji
             uiManagerScript.SetMoneyValue(money);
             money = uiManagerScript.GetMoneyValue();
             hp = uiManagerScript.GetHpValue();
-            displayHp = hp;
-            damageHp = maxHp - hp;
+            damage = maxHp - hp;
             Money();
-            HpGauge(displayHp);
+            HpGauge(damage);
         }
 
         //HPゲージ管理
         public void HpGauge(int hp)
         {
-            //現在体力と比較用体力を比べて、異なっていれば徐々に減算
-            if (displayHp != hp) displayHp = (int)Mathf.Lerp(displayHp, hp, 0.1f);
-            //if (damageHp != maxHp) damageHp = (int)Mathf.Lerp(damageHp, maxHp, 0.1f);
-            //現在体力の割合により文字色変化
-            float hpPercentage = (float)displayHp / maxHp * 2.5f;
-            //float damagePercentage = (float)damageHp / maxHp;
+            //最大体力とダメージを比べて、異なっていれば徐々に減算
+            float hpPercentage = (float)maxHp / hp * 1.0f;
             //ゲージの長さを体力の割合により伸縮
-            imageHp.transform.localScale = new Vector3(0.5f, hpPercentage, 1);
-            //imageDamage.transform.localScale = new Vector3(1.0f, damagePercentage, 1);
+            imageDamage.rectTransform.localScale = new Vector3(6.0f, hpPercentage, 1.0f);
         }
 
-        //所持金テキスト管理
+        //所持金管理
         void Money()
         {
-            MoneyUI numSprite = GetComponent<MoneyUI>();
-            numSprite.Value = money; //ここで表示数値指定
+            textMoney.text = string.Format("{0:0,000}", money);
             //所持金値制限
             money = (int)Mathf.Clamp(money, 0, maxMoney);
         }
