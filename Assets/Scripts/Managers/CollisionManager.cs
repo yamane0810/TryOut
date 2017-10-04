@@ -11,7 +11,8 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-
+    [SerializeField]
+    ScoreWrite scoreWriteScript;
     [SerializeField]
     UIManager UIScript;
     [SerializeField]
@@ -64,7 +65,19 @@ public class CollisionManager : MonoBehaviour
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
             Destroy(hitobj);
         }
-        
+
+        //ゴールオブジェクトに衝突した時
+        else if (hitobj.tag == "Goal")
+        {
+            //スコアの合計の計算開始
+            int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
+            int money = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetMoney();
+            int sum = hp * money;
+            //スコアの合計の計算終了
+            string data = sum.ToString();
+            scoreWriteScript.WirteScore(data);
+            SceneManager.LoadScene("ResultScene");
+        }
 
         //地面と接した時
         else if(hitobj.tag == "Ground")
