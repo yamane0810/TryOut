@@ -20,12 +20,14 @@ namespace Nagoshi
         GameObject InstancePos;
         [SerializeField]
         int rate;
+        [SerializeField]
         bool isAction = true;
         public Nagoshi.PlayerStatus.EventStatus GetStatus()
         {
             return eventstats;
         }
 
+        //プレイやーがアクションボタンを押したときに処理される
         public void Action()
         {
             if (isAction)
@@ -38,6 +40,10 @@ namespace Nagoshi
                         break;
                     case Nagoshi.PlayerStatus.EventStatus.gondola:
                         EventObj.GetComponent<Fook>().InstanceGondola();
+                        break;
+                    case Nagoshi.PlayerStatus.EventStatus.movebox:
+                        Debug.Log("move");
+                        EventObj.GetComponent<ParentMoveBox>().StopMoveBox();//親オブジェクトのMoveBoxアクセス
                         break;
                 }
                 isAction = false;
