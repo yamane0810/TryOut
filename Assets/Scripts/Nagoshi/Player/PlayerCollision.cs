@@ -22,11 +22,6 @@ namespace Nagoshi
             collisionManagerScript.HitPlayer(gameObject, col.gameObject);
         }
 
-        void OnTriggerExit(Collider col)
-        {
-            collisionManagerScript.ExitPlayer(gameObject,col.gameObject);
-        }
-
         void OnCollisionEnter(Collision col)
         {
             collisionManagerScript.HitCollision(gameObject,col.gameObject);
