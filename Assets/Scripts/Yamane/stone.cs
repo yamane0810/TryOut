@@ -26,6 +26,7 @@ public class stone : MonoBehaviour
             PosUpdate();
             Instantiate(stonecube, pos, Quaternion.identity);
             cnt1 = 0; new Vector3(-40.0f, 2.0f, 0.0f);
+            GetComponent<SEManager>().PlaySe(0);
         }
 
         if (cnt2 > 80)
@@ -34,6 +35,8 @@ public class stone : MonoBehaviour
             PosUpdate();
             Instantiate(stonecube,pos, Quaternion.identity);
             cnt2 = 0;
+            GetComponent<SEManager>().PlaySe(0);
+
 
         }
         if (cnt3 > 90)
@@ -42,6 +45,8 @@ public class stone : MonoBehaviour
             PosUpdate();
             Instantiate(stonecube,pos, Quaternion.identity);
             cnt3 = 0;
+            GetComponent<SEManager>().PlaySe(0);
+
         }
     }
 
