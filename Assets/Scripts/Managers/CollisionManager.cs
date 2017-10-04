@@ -6,6 +6,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
@@ -33,7 +34,8 @@ public class CollisionManager : MonoBehaviour
         //ゴールオブジェクトに衝突した時
         else if (hitobj.tag == "Goal")
         {
-            Debug.Log("ゴール！");
+            SceneManager.LoadScene("ResultScene");
+            //Debug.Log("ゴール！");
         }
         //宝に衝突した時
         else if (hitobj.tag == "Tresure")
@@ -78,11 +80,6 @@ public class CollisionManager : MonoBehaviour
            playerobj.transform.parent = hitobj.transform;
             playerobj.transform.localScale = copyscale;
         }
-    }
-
-    public void ExitPlayer(GameObject playerobj,GameObject exitobj)
-    {
-
     }
 
     public void HitCollision(GameObject playerobj,GameObject hitobj)
