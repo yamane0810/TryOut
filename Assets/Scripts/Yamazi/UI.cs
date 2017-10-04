@@ -14,24 +14,23 @@ namespace Yamaji
 {
     public class UI : MonoBehaviour
     {
-        int hp;                             //現在体力
-        int maxHp = 100;                    //最大体力
+        int playerHp;                       //現在体力
+        int playerMaxHp;                    //最大体力
         int damage;                         //ダメージ
-        int money;                          //現在所持金
-        int maxMoney = 9999;                //最大所持金
+        int playerMoney;                    //現在所持金
+        int playerMaxMoney;                 //最大所持金
         public Image imageDamage;           //ダメージ演出画像
         public Text textMoney;              //所持金テキスト
-        //public Sprite sprite;             //分割前スプライト
-        //public Sprite[] SpriteArray;      //各スプライト格納配列
         public UIManager uiManagerScript;   //UIマネージャー取得
-        
+        public Nagoshi.PlayerStatus playerStatus;
         //初期化処理
         void Start()
         {
-            uiManagerScript.SetMoneyValue(money);
-            money = uiManagerScript.GetMoneyValue();
-            hp = uiManagerScript.GetHpValue();
-            damage = maxHp - hp;
+            playerMaxHp = playerStatus.GetMaxHp();
+            playerHp = playerMaxHp;
+            playerMaxMoney = playerStatus.GetMaxMoney();
+            playerMoney = playerStatus.GetMoney();
+            damage = playerMaxHp - playerHp;
             Money();
             HpGauge(damage);
         }
@@ -40,7 +39,7 @@ namespace Yamaji
         public void HpGauge(int hp)
         {
             //最大体力とダメージを比べて、異なっていれば徐々に減算
-            float hpPercentage = (float)maxHp / hp * 1.0f;
+            float hpPercentage = (float)playerMaxHp / playerHp * 1.0f;
             //ゲージの長さを体力の割合により伸縮
             imageDamage.rectTransform.localScale = new Vector3(6.0f, hpPercentage, 1.0f);
         }
@@ -48,15 +47,15 @@ namespace Yamaji
         //所持金管理
         void Money()
         {
-            textMoney.text = string.Format("{0:0,000}", money);
+            textMoney.text = string.Format("{0:0,000}", playerMoney);
             //所持金値制限
-            money = (int)Mathf.Clamp(money, 0, maxMoney);
+            playerMoney = (int)Mathf.Clamp(playerMoney, 0, playerMaxMoney);
         }
 
         //表示所持金セット
         public void SetMoneyText(int setValue)
         {
-            Debug.Log(money);
+            Debug.Log(playerMoney);
         }
     }
 }
