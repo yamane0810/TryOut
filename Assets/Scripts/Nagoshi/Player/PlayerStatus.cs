@@ -18,8 +18,11 @@ namespace Nagoshi
         int speed;
         bool isWalk = false;
         bool isTest = false;
+        bool isJump = true;
         [SerializeField]
         int money;
+        [SerializeField]
+        float jumpForce;
         GameObject attachEventObj;
 
         public enum EventStatus
@@ -98,6 +101,26 @@ namespace Nagoshi
         public void SetHp(int set)
         {
             hp = set;
+        }
+
+        public void SetIsJump(bool set)
+        {
+            isJump = set;
+        }
+
+        public bool GetIsJump()
+        {
+            return isJump;
+        }
+
+        public float GetJumpForce()
+        {
+            return jumpForce;
+        }
+
+        public void SetJumpForce(float set)
+        {
+            jumpForce = set;
         }
     }
 }
