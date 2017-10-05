@@ -25,7 +25,6 @@ public class CollisionManager : MonoBehaviour
     /// </summary>
     public void HitPlayer(GameObject playerobj, GameObject hitobj)
     {
-        Debug.Log(hitobj.tag);
         //イベントのオブジェクトに衝突した時
         if (hitobj.tag == "Event")
         {
