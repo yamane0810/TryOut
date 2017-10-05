@@ -37,5 +37,10 @@ namespace Nagoshi
         {
             collisionManagerScript.StayCollision(gameObject,col.gameObject);
         }
+
+        void OnCollisionExit(Collision col)
+        {
+            collisionManagerScript.ExitCollsion(gameObject, col.gameObject);
+        }
     }
 }

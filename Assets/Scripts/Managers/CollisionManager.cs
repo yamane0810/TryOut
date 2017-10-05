@@ -86,10 +86,10 @@ public class CollisionManager : MonoBehaviour
         //ゴンドラと接した時
         else if (hitobj.tag == "Gondola")
         {
-            Vector3 copyscale = playerobj.transform.localScale;
-            playerobj.transform.parent = hitobj.transform;
-            playerobj.transform.localScale = copyscale;
-            GetComponent<SEManager>().PlaySe(2);
+            //Vector3 copyscale = playerobj.transform.localScale;
+            //playerobj.transform.parent = hitobj.transform;
+            //playerobj.transform.localScale = copyscale;
+            //GetComponent<SEManager>().PlaySe(2);
         }
     }
 
@@ -126,7 +126,7 @@ public class CollisionManager : MonoBehaviour
     /// </summary>
     public void ExitCollsion(GameObject playerobj, GameObject exitobj)
     {
-        if (exitobj.gameObject.tag == "Gondola")
+        if (exitobj.gameObject.tag == "Fook")
         {
             playerobj.transform.parent = null;
         }
