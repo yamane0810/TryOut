@@ -1,8 +1,8 @@
-﻿/////////////////
-//制作  山路優樹
-//日付  10月3日
-//説明  UI管理
-/////////////////
+﻿/**
+*   @Author YukiYamaji
+*   @Day    17/10/3
+*   @Brief  UI管理
+**/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -11,14 +11,14 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    Yamaji.UI UITestScript;
+    Yamaji.UI ui;                 //UIスクリプト
     [SerializeField]
-    Nagoshi.PlayerManager playerScript;
+    Nagoshi.PlayerManager playerScript; //プレイヤーマネージャー
 
     //所持金設定
     public void SetMoneyValue(int set)
     {
-        UITestScript.SetMoneyText(set);
+        ui.SetMoneyText(set);
     }
 
     //所持金取得
