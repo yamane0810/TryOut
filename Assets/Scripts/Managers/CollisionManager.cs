@@ -11,7 +11,8 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-
+    [SerializeField]
+    ScoreWrite scoreWriteScript;
     [SerializeField]
     UIManager UIScript;
     [SerializeField]
@@ -43,7 +44,6 @@ public class CollisionManager : MonoBehaviour
             int money = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetMoney();
             money += 500;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetMoney(money);
-            UIScript.SetMoneyValue(money);
             Debug.Log(money);
             Destroy(hitobj);
             GetComponent<SEManager>().PlaySe(3);
@@ -55,7 +55,6 @@ public class CollisionManager : MonoBehaviour
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             hp -= 20;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
-            UI.HpGauge(hp);
             Debug.Log("Damage");
         }
         //敵と衝突した時
@@ -64,10 +63,21 @@ public class CollisionManager : MonoBehaviour
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             hp -= 30;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
-            UI.HpGauge(hp);
             Destroy(hitobj);
         }
-        
+
+        //ゴールオブジェクトに衝突した時
+        else if (hitobj.tag == "Goal")
+        {
+            //スコアの合計の計算開始
+            int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
+            int money = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetMoney();
+            int sum = hp * money;
+            //スコアの合計の計算終了
+            string data = sum.ToString();
+            scoreWriteScript.WirteScore(data);
+            SceneManager.LoadScene("ResultScene");
+        }
 
         //地面と接した時
         else if(hitobj.tag == "Ground")
@@ -111,7 +121,6 @@ public class CollisionManager : MonoBehaviour
         if (stayObj.tag == "Smog")
         {
             cnt += Time.deltaTime;
-            Debug.Log(cnt);
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             if (cnt > 1.0f)
             {
@@ -119,7 +128,6 @@ public class CollisionManager : MonoBehaviour
                 cnt = 0.0f;
             }
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
-            UI.HpGauge(hp);
         }
     }
 }

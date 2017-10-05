@@ -29,13 +29,9 @@ public class Score : MonoBehaviour
         //一行読み込み
         string TotalScore = sr.ReadToEnd();
         scoretxt.text = TotalScore;
-
     }
     void Update()
     {
-        //合計得点（リザルト時の得点）体力　*　スコア　=　トータルスコア
-        TotalScore = hp * score;
-        scoretxt.text = "Score:" +  TotalScore;
-    }
+     }
 }
 
