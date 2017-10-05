@@ -1,8 +1,8 @@
-﻿/////////////////
-//制作  山路優樹
-//日付  10月3日
-//説明  敵UI管理
-/////////////////
+﻿/**
+*   @Author YukiYamaji
+*   @Day    17/10/3
+*   @Brief  敵行動管理
+**/
 
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +27,9 @@ namespace Yamaji
         //行動変化処理
         void Update()
         {
+            //タイム加算
             cnt += 1.0f * Time.deltaTime;
+            //位置更新
             transform.position = pos;
 
             if (cnt < 10.0f)
