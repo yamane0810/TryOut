@@ -22,8 +22,9 @@ public class CollisionManager : MonoBehaviour
     /// <summary>
     /// プレイやーがほかのオブジェクト衝突した時の処理
     /// </summary>
-    public void HitPlayer(GameObject playerobj,GameObject hitobj)
+    public void HitPlayer(GameObject playerobj, GameObject hitobj)
     {
+        Debug.Log(hitobj.tag);
         //イベントのオブジェクトに衝突した時
         if (hitobj.tag == "Event")
         {
@@ -67,7 +68,7 @@ public class CollisionManager : MonoBehaviour
         
 
         //地面と接した時
-        else if(hitobj.tag == "Ground")
+        else if (hitobj.tag == "Ground")
         {
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsJump(true);
         }
@@ -75,14 +76,36 @@ public class CollisionManager : MonoBehaviour
         //ゴンドラと接した時
         else if (hitobj.tag == "Gondola")
         {
-           Vector3 copyscale = playerobj.transform.localScale;
-           playerobj.transform.parent = hitobj.transform;
+            Vector3 copyscale = playerobj.transform.localScale;
+            playerobj.transform.parent = hitobj.transform;
             playerobj.transform.localScale = copyscale;
             GetComponent<SEManager>().PlaySe(2);
         }
+        else if (hitobj.tag == "Elevator")
+        {
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsElevetorAction(true);
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetElevator(hitobj.GetComponent<Nagoshi.Elevator>());
+        }
     }
 
-    public void HitCollision(GameObject playerobj,GameObject hitobj)
+    /// <summary>
+    /// プレイやーがオブジェクトから離れた時
+    /// </summary>
+    public void ExitPlayer(GameObject playerobj, GameObject exitobj)
+    {
+        if (exitobj.gameObject.tag == "Fook")
+        {
+            playerobj.transform.parent = null;
+        }
+
+        else if (exitobj.gameObject.tag == "Elevator")
+        {
+            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsElevetorAction(false);
+        }
+
+    }
+
+    public void HitCollision(GameObject playerobj, GameObject hitobj)
     {
         if (hitobj.gameObject.tag == "Ground")
         {
