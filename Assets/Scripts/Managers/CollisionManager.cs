@@ -91,11 +91,6 @@ public class CollisionManager : MonoBehaviour
             playerobj.transform.localScale = copyscale;
             GetComponent<SEManager>().PlaySe(2);
         }
-        else if (hitobj.tag == "Elevator")
-        {
-            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsElevetorAction(true);
-            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetElevator(hitobj.GetComponent<Nagoshi.Elevator>());
-        }
     }
 
     /// <summary>
@@ -107,12 +102,6 @@ public class CollisionManager : MonoBehaviour
         {
             playerobj.transform.parent = null;
         }
-
-        else if (exitobj.gameObject.tag == "Elevator")
-        {
-            playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsElevetorAction(false);
-        }
-
     }
 
     /// <summary>

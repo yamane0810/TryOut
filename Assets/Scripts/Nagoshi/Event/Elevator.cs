@@ -71,7 +71,8 @@ namespace Nagoshi
             if(col.gameObject.tag == "Player")
             {
                 col.gameObject.transform.parent = transform.parent;
-                col.gameObject.GetComponent<Rigidbody>().useGravity = false;
+                col.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                transform.position = transform.position;
                 col.gameObject.GetComponent<Nagoshi.PlayerStatus>().SetIsElevetorAction(true);
                 col.gameObject.GetComponent<Nagoshi.PlayerStatus>().SetElevator(GetComponent<Nagoshi.Elevator>());
             }
@@ -85,7 +86,6 @@ namespace Nagoshi
             if (col.gameObject.tag == "Player")
             {
                 col.gameObject.transform.parent =　null;
-                col.gameObject.GetComponent<Rigidbody>().useGravity = true;
                 col.gameObject.GetComponent<Nagoshi.PlayerStatus>().SetIsElevetorAction(false);
                 col.gameObject.GetComponent<Nagoshi.PlayerStatus>().SetElevator(null);
             }
