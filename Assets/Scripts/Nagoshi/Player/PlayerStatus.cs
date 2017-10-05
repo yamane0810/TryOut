@@ -118,8 +118,14 @@ namespace Nagoshi
         public void SetHp(int set)
         {
             hp = set;
+            //ゲームオーバーシーンに飛ばす
+            if (hp <= 5)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOverScene");
+            }
+            //UIにゲージを反映
             UIScript.HpGauge(hp);
-        }
+            }
 
         public void SetIsJump(bool set)
         {
