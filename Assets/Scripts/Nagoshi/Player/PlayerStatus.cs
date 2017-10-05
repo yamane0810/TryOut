@@ -33,7 +33,10 @@ namespace Nagoshi
         UIManager UIManager;
         [SerializeField]
         Yamaji.UI UIScript;
-
+        [SerializeField]
+        bool isElevetorAction;
+        [SerializeField]
+        Nagoshi.Elevator elevator;
         public enum EventStatus
         {
             none,
@@ -156,6 +159,25 @@ namespace Nagoshi
         public void SetMaxHp(int set)
         {
             maxHp = set;
+        }
+
+        public void SetIsElevetorAction(bool set)
+        {
+            isElevetorAction = set;
+        }
+        public bool GetIsElevetorAction()
+        {
+            return isElevetorAction;
+        }
+
+        public void SetElevator(Elevator set)
+        {
+            elevator = set;
+        }
+
+        public Elevator GetElevator()
+        {
+            return elevator;
         }
     }
 }
