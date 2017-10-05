@@ -12,8 +12,19 @@ public class stone : MonoBehaviour
     int cnt1 = 0;
     int cnt2 = 0;
     int cnt3 = 0;
+    public GameObject createStone;
     public GameObject stonecube;
-    Vector3 pos;
+    Vector3 createPos;
+    Vector3 stonePos;
+    [SerializeField]
+    float width;
+
+    void Start()
+    {
+        createPos = createStone.transform.position;
+        stonePos = stonecube.transform.position;
+    }
+
     void Update()
     {
 
@@ -22,18 +33,18 @@ public class stone : MonoBehaviour
         cnt3++;
         if (cnt1 > 60)
         {
-            pos = new Vector3(-50.0f, 0.0f, 0.0f);
+            stonePos.x = createPos.x + width;
             PosUpdate();
-            Instantiate(stonecube, pos, Quaternion.identity);
+            Instantiate(stonecube, stonePos, Quaternion.identity);
             cnt1 = 0; new Vector3(-40.0f, 2.0f, 0.0f);
             GetComponent<SEManager>().PlaySe(0);
         }
 
         if (cnt2 > 80)
         {
-            pos = new Vector3(-45.0f, 0.0f, 0.0f);
+            stonePos.x = createPos.x - width;
             PosUpdate();
-            Instantiate(stonecube,pos, Quaternion.identity);
+            Instantiate(stonecube, stonePos, Quaternion.identity);
             cnt2 = 0;
             GetComponent<SEManager>().PlaySe(0);
 
@@ -41,9 +52,9 @@ public class stone : MonoBehaviour
         }
         if (cnt3 > 90)
         {
-            pos = new Vector3(-40.0f, 0.0f, 0.0f);
+            stonePos.x = createPos.x;
             PosUpdate();
-            Instantiate(stonecube,pos, Quaternion.identity);
+            Instantiate(stonecube, stonePos, Quaternion.identity);
             cnt3 = 0;
             GetComponent<SEManager>().PlaySe(0);
 
@@ -52,6 +63,6 @@ public class stone : MonoBehaviour
 
     void PosUpdate()
     {
-        pos.y = transform.position.y;
+        stonePos.y = transform.position.y;
     }
 }

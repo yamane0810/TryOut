@@ -19,6 +19,5 @@ namespace Nagoshi
         {
             fookObj.SetDirection();
         }
-
     }
 }

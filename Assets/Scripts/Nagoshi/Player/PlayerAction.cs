@@ -13,6 +13,8 @@ namespace Nagoshi
     public class PlayerAction : MonoBehaviour
     {
         [SerializeField]
+        GameObject seManager;
+        [SerializeField]
         PlayerAnimation playerAnimationScript;
         [SerializeField]
         PlayerStatus playerStatusScript;
@@ -21,7 +23,6 @@ namespace Nagoshi
         float leftValue;
         [SerializeField]
         float rightValue;
-
         void Update()
         {
             Key();
@@ -50,12 +51,16 @@ namespace Nagoshi
                 Walk(false, 0);
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick2Button1))
+            if(Input.GetAxis("Vertical") != 0.0f)
+            {
+                ElevatorAction();
+            }
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick2Button1)　|| Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
                 Event();
             }
 
-            if(Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if(Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick2Button0))
             {
                 Jump();
             }
@@ -109,6 +114,7 @@ namespace Nagoshi
                     case PlayerStatus.EventStatus.movebox:
                         playerStatusScript.SetMoney(sum);
                         eventobj.GetComponent<Nagoshi.EventStatus>().Action();
+                       seManager.GetComponent< SEManager > ().PlaySe(1);
                         break;
                 }
             }
@@ -120,7 +126,19 @@ namespace Nagoshi
             {
                 playerStatusScript.SetIsJump(false);
                 GetComponent<Rigidbody>().AddForce(Vector3.up * playerStatusScript.GetJumpForce());
+               seManager.GetComponent<SEManager>().PlaySe(4);
             }
+        }
+
+        void ElevatorAction()
+        {
+            float value = Input.GetAxis("Vertical");
+            if(!playerStatusScript.GetIsElevetorAction())
+            {
+                return;
+            }
+            Elevator elevator = playerStatusScript.GetElevator();
+            elevator.Move(value);
         }
     }
 }

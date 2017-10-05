@@ -19,6 +19,7 @@ namespace Nagoshi
 
         void OnTriggerEnter(Collider col)
         {
+            Debug.Log(col.gameObject.tag);
             collisionManagerScript.HitPlayer(gameObject, col.gameObject);
         }
 
@@ -27,17 +28,19 @@ namespace Nagoshi
             collisionManagerScript.HitCollision(gameObject,col.gameObject);
         }
 
-        void OnCollisionExit(Collision col)
+        void OnTriggerExit(Collider col)
         {
-            if(col.gameObject.tag == "Fook")
-            {
-                transform.parent = null;
-            }
+            collisionManagerScript.ExitPlayer(gameObject, col.gameObject);
         }
 
         void OnTriggerStay(Collider col)
         {
             collisionManagerScript.StayCollision(gameObject,col.gameObject);
+        }
+
+        void OnCollisionExit(Collision col)
+        {
+            collisionManagerScript.ExitCollsion(gameObject, col.gameObject);
         }
     }
 }

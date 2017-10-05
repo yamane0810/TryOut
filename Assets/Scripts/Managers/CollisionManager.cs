@@ -23,7 +23,7 @@ public class CollisionManager : MonoBehaviour
     /// <summary>
     /// プレイやーがほかのオブジェクト衝突した時の処理
     /// </summary>
-    public void HitPlayer(GameObject playerobj,GameObject hitobj)
+    public void HitPlayer(GameObject playerobj, GameObject hitobj)
     {
         //イベントのオブジェクトに衝突した時
         if (hitobj.tag == "Event")
@@ -31,12 +31,6 @@ public class CollisionManager : MonoBehaviour
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetEventObj(hitobj);
             GameObject obj = InstanceScript.InstanceObjects(0, hitobj.transform.position + Vector3.up * 2);
             Destroy(obj, 3.0f);
-        }
-        //ゴールオブジェクトに衝突した時
-        else if (hitobj.tag == "Goal")
-        {
-            SceneManager.LoadScene("ResultScene");
-            //Debug.Log("ゴール！");
         }
         //宝に衝突した時
         else if (hitobj.tag == "Tresure")
@@ -55,7 +49,6 @@ public class CollisionManager : MonoBehaviour
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             hp -= 20;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
-            Debug.Log("Damage");
         }
         //敵と衝突した時
         else if (hitobj.tag == "Enemy")
@@ -74,13 +67,13 @@ public class CollisionManager : MonoBehaviour
             int money = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetMoney();
             int sum = hp * money;
             //スコアの合計の計算終了
-            string data = sum.ToString();
+            string data = money.ToString() + "/" + hp.ToString() + "/" + sum.ToString();
             scoreWriteScript.WirteScore(data);
             SceneManager.LoadScene("ResultScene");
         }
 
         //地面と接した時
-        else if(hitobj.tag == "Ground")
+        else if (hitobj.tag == "Ground")
         {
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetIsJump(true);
         }
@@ -88,14 +81,28 @@ public class CollisionManager : MonoBehaviour
         //ゴンドラと接した時
         else if (hitobj.tag == "Gondola")
         {
-           Vector3 copyscale = playerobj.transform.localScale;
-           playerobj.transform.parent = hitobj.transform;
-            playerobj.transform.localScale = copyscale;
-            GetComponent<SEManager>().PlaySe(2);
+            //Vector3 copyscale = playerobj.transform.localScale;
+            //playerobj.transform.parent = hitobj.transform;
+            //playerobj.transform.localScale = copyscale;
+            //GetComponent<SEManager>().PlaySe(2);
         }
     }
 
-    public void HitCollision(GameObject playerobj,GameObject hitobj)
+    /// <summary>
+    /// プレイやーがオブジェクトから離れた時
+    /// </summary>
+    public void ExitPlayer(GameObject playerobj, GameObject exitobj)
+    {
+        if (exitobj.gameObject.tag == "Fook")
+        {
+            playerobj.transform.parent = null;
+        }
+    }
+
+    /// <summary>
+    /// プレイやーがトリガーに当たったら
+    /// </summary>
+    public void HitCollision(GameObject playerobj, GameObject hitobj)
     {
         if (hitobj.gameObject.tag == "Ground")
         {
@@ -106,14 +113,19 @@ public class CollisionManager : MonoBehaviour
         {
             playerobj.transform.parent = hitobj.transform;
         }
+
     }
 
+    /// <summary>
+    /// プレイやーがオブジェクトから離れたら
+    /// </summary>
     public void ExitCollsion(GameObject playerobj, GameObject exitobj)
     {
-        if (exitobj.tag == "Gondola")
+        if (exitobj.gameObject.tag == "Fook")
         {
             playerobj.transform.parent = null;
         }
+
     }
     public void StayCollision(GameObject playerobj, GameObject stayObj)
     {

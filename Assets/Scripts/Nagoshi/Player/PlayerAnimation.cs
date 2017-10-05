@@ -28,7 +28,7 @@ namespace Nagoshi
         /// </summary>
         public void SetIsWalk()
         {
-            animControl.SetBool("isWalk", playerStatusScript.GetIsWalk());
+            //animControl.SetBool("isWalk", playerStatusScript.GetIsWalk());
         }
     }
 }
