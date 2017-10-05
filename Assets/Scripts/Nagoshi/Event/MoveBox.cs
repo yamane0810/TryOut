@@ -65,10 +65,29 @@ namespace Nagoshi
             }
         }
 
+        /// <summary>
+        /// 動きを止めて生成する
+        /// </summary>
         public void Stop()
         {
             Instantiate(instanceMoveBox, instancePos.transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
+
+        void OnCollisionEnter(Collision col)
+        {
+            if(col.gameObject.tag == "Player")
+            {
+                col.gameObject.transform.parent = transform;
+            }
+        }
+
+        void OnCollisionExit(Collision col)
+        {
+            if (col.gameObject.tag == "Player")
+            {
+                col.gameObject.transform.parent = null;
+            }
         }
     }
 }
