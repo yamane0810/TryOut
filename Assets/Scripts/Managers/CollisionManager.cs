@@ -118,6 +118,7 @@ public class CollisionManager : MonoBehaviour
         {
             playerobj.transform.parent = hitobj.transform;
         }
+
     }
 
     /// <summary>
@@ -125,10 +126,11 @@ public class CollisionManager : MonoBehaviour
     /// </summary>
     public void ExitCollsion(GameObject playerobj, GameObject exitobj)
     {
-        if (exitobj.tag == "Gondola")
+        if (exitobj.gameObject.tag == "Gondola")
         {
             playerobj.transform.parent = null;
         }
+
     }
     public void StayCollision(GameObject playerobj, GameObject stayObj)
     {
