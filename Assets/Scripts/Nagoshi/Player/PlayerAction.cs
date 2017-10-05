@@ -55,12 +55,12 @@ namespace Nagoshi
             {
                 ElevatorAction();
             }
-            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick2Button1))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick2Button1)　|| Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
                 Event();
             }
 
-            if(Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if(Input.GetKeyDown(KeyCode.Joystick1Button0) || Input.GetKeyDown(KeyCode.Joystick2Button0))
             {
                 Jump();
             }

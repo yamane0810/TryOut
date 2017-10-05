@@ -11,7 +11,8 @@ using UnityEngine;
 
 public class CollisionManager : MonoBehaviour
 {
-
+    [SerializeField]
+    ScoreWrite scoreWriteScript;
     [SerializeField]
     UIManager UIScript;
     [SerializeField]
@@ -24,7 +25,6 @@ public class CollisionManager : MonoBehaviour
     /// </summary>
     public void HitPlayer(GameObject playerobj, GameObject hitobj)
     {
-        Debug.Log(hitobj.tag);
         //イベントのオブジェクトに衝突した時
         if (hitobj.tag == "Event")
         {
@@ -36,7 +36,6 @@ public class CollisionManager : MonoBehaviour
         else if (hitobj.tag == "Goal")
         {
             SceneManager.LoadScene("ResultScene");
-            //Debug.Log("ゴール！");
         }
         //宝に衝突した時
         else if (hitobj.tag == "Tresure")
@@ -46,7 +45,7 @@ public class CollisionManager : MonoBehaviour
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetMoney(money);
             Debug.Log(money);
             Destroy(hitobj);
-            //GetComponent<SEManager>().PlaySe(3);
+            GetComponent<SEManager>().PlaySe(3);
 
         }
         //ギミックに衝突した時
@@ -55,7 +54,6 @@ public class CollisionManager : MonoBehaviour
             int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
             hp -= 20;
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
-            Debug.Log("Damage");
         }
         //敵と衝突した時
         else if (hitobj.tag == "Enemy")
@@ -65,7 +63,19 @@ public class CollisionManager : MonoBehaviour
             playerobj.GetComponent<Nagoshi.PlayerStatus>().SetHp(hp);
             Destroy(hitobj);
         }
-        
+
+        //ゴールオブジェクトに衝突した時
+        else if (hitobj.tag == "Goal")
+        {
+            //スコアの合計の計算開始
+            int hp = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetHp();
+            int money = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetMoney();
+            int sum = hp * money;
+            //スコアの合計の計算終了
+            string data = sum.ToString();
+            scoreWriteScript.WirteScore(data);
+            SceneManager.LoadScene("ResultScene");
+        }
 
         //地面と接した時
         else if (hitobj.tag == "Ground")
@@ -105,6 +115,9 @@ public class CollisionManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// プレイやーがトリガーに当たったら
+    /// </summary>
     public void HitCollision(GameObject playerobj, GameObject hitobj)
     {
         if (hitobj.gameObject.tag == "Ground")
@@ -118,6 +131,9 @@ public class CollisionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// プレイやーがオブジェクトから離れたら
+    /// </summary>
     public void ExitCollsion(GameObject playerobj, GameObject exitobj)
     {
         if (exitobj.tag == "Gondola")
