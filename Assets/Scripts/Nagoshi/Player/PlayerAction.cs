@@ -114,7 +114,7 @@ namespace Nagoshi
                     case PlayerStatus.EventStatus.movebox:
                         playerStatusScript.SetMoney(sum);
                         eventobj.GetComponent<Nagoshi.EventStatus>().Action();
-                        GetComponent< SEManager > ().PlaySe(1);
+                       seManager.GetComponent< SEManager > ().PlaySe(1);
                         break;
                 }
             }
