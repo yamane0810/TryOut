@@ -32,11 +32,6 @@ public class CollisionManager : MonoBehaviour
             GameObject obj = InstanceScript.InstanceObjects(0, hitobj.transform.position + Vector3.up * 2);
             Destroy(obj, 3.0f);
         }
-        //ゴールオブジェクトに衝突した時
-        else if (hitobj.tag == "Goal")
-        {
-            SceneManager.LoadScene("ResultScene");
-        }
         //宝に衝突した時
         else if (hitobj.tag == "Tresure")
         {
@@ -72,7 +67,7 @@ public class CollisionManager : MonoBehaviour
             int money = playerobj.GetComponent<Nagoshi.PlayerStatus>().GetMoney();
             int sum = hp * money;
             //スコアの合計の計算終了
-            string data = sum.ToString();
+            string data = money.ToString() + "/" + hp.ToString() + "/" + sum.ToString();
             scoreWriteScript.WirteScore(data);
             SceneManager.LoadScene("ResultScene");
         }
